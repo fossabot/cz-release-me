@@ -257,7 +257,7 @@ describe('cz-release-me', () => {
         // question 1 - TYPE
         expect(getQuestion(1).name).to.equal('type');
         expect(getQuestion(1).type).to.equal('list');
-        expect(getQuestion(1).choices[0]).to.deep.equal({value: 'feat', name: 'feat: my feat'});
+        expect(getQuestion(1).choices[0]).to.deep.equal({value: 'feat', name: '\u001b[33mfeat\u001b[39m (feat: my feat)'}); // chalk.yellow color
 
         // question 2 - SCOPE
         expect(getQuestion(2).name).to.equal('scope');
