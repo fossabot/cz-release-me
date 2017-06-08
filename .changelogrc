@@ -55,34 +55,21 @@
   ],
   "scopes": [
     {
-      "name": "accounts"
+      "name": "package"
     },
     {
-      "name": "admin"
+      "name": "docs"
     },
     {
-      "name": "exampleScope"
+      "name": "test"
     },
     {
-      "name": "changeMe"
+      "name": "ci"
+    },
+    {
+      "name": "travis-ci"
     }
   ],
-  "scopeOverrides": {
-    "fix": [
-      {
-        "name": "merge"
-      },
-      {
-        "name": "style"
-      },
-      {
-        "name": "e2eTest"
-      },
-      {
-        "name": "unitTest"
-      }
-    ]
-  },
   "notes": [
     {
       "keyword": "BREAKING CHANGE",

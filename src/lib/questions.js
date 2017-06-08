@@ -2,6 +2,7 @@
 
 const buildCommit = require('./build-commit');
 const log = require('winston');
+const chalk = require('chalk');
 
 function isNotWip(answers) {
   return answers.type.toLowerCase() !== 'wip';
@@ -17,18 +18,18 @@ module.exports = {
       {
         type: 'list',
         name: 'type',
-        message: 'Select the type of change that you\'re committing:',
+        message: chalk.green('Select the type of change that you\'re committing:'),
         choices: config.types.map(value => {
           return {
             value: value.key,
-            name: value.name + ': ' + value.description
-          }
+            name: chalk.yellow(value.key) + ' (' + value.name + chalk.grey(value.description ? ' - ' + value.description : '') + ')'
+          };
         })
       },
       {
         type: 'list',
         name: 'scope',
-        message: '\nSelect the SCOPE of this change (optional):',
+        message: chalk.green('Select the SCOPE of this change (optional):'),
         choices: (answers) => {
           let scopes = [];
 
@@ -74,7 +75,7 @@ module.exports = {
       {
         type: 'input',
         name: 'scope',
-        message: 'Denote the SCOPE of this change:',
+        message: chalk.green('Denote the SCOPE of this change:'),
         when: (answers) => {
           return answers.scope === 'custom';
         }
@@ -82,7 +83,7 @@ module.exports = {
       {
         type: 'input',
         name: 'subject',
-        message: 'Write a SHORT, IMPERATIVE tense description of the change:\n',
+        message: chalk.green('Write a SHORT, IMPERATIVE tense description of the change:\n'),
         validate: (value) => {
           return !!value;
         },
@@ -93,12 +94,12 @@ module.exports = {
       {
         type: 'input',
         name: 'body',
-        message: 'Provide a LONGER description of the change (optional). Use "|" to break new line:\n'
+        message: chalk.green('Provide a LONGER description of the change (optional). Use "|" to break new line:\n')
       },
       {
         type: 'input',
         name: 'breaking',
-        message: 'List any BREAKING CHANGES (optional):\n',
+        message: chalk.green('List any BREAKING CHANGES (optional):\n'),
         when: (answers) => {
           if (config.allowBreakingChanges && config.allowBreakingChanges.indexOf(answers.type.toLowerCase()) >= 0) {
             return true;
@@ -110,7 +111,7 @@ module.exports = {
       {
         type: 'input',
         name: 'footer',
-        message: 'List any ISSUES CLOSED by this change (optional). E.g.: #31, #34:\n',
+        message: chalk.green('List any ISSUES CLOSED by this change (optional). E.g.: #31, #34:\n'),
         when: isNotWip
       },
       {
@@ -124,7 +125,7 @@ module.exports = {
         message: (answers) => {
           let SEP = '###--------------------------------------------------------###';
           log.info('\n' + SEP + '\n' + buildCommit(answers) + '\n' + SEP + '\n');
-          return 'Are you sure you want to proceed with the commit above?';
+          return chalk.red('Are you sure you want to proceed with the commit above?');
         }
       }
     ];

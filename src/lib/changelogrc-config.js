@@ -1,7 +1,6 @@
 'use strict';
 
 const findup = require('findup');
-const findConfig = require('find-config');
 const fs = require('fs');
 const path = require('path');
 

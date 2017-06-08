@@ -1,6 +1,7 @@
 'use strict';
 
 const log = require('winston');
+const chalk = require('chalk');
 const editor = require('editor');
 const temp = require('temp').track();
 const fs = require('fs');
@@ -13,7 +14,6 @@ module.exports = {
     let config = changelogrcConfig();
 
     Promise.resolve(config).then((value) => {
-
       log.info('\n\nLine 1 will be cropped at 100 characters. All other lines will be wrapped after 100 characters.\n');
 
       let questions = require('./lib/questions').getQuestions(value, cz);
