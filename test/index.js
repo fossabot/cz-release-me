@@ -187,7 +187,7 @@ describe('cz-release-me', () => {
       setTimeout(() => {
         expect(commit.called).to.equal(false);
         done();
-      }, 100);
+      }, 500);
     });
 
     it('should truncate first line if number of characters is higher than 200', (done) => {
