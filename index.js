@@ -1,13 +1,14 @@
 'use strict';
 
-const log = require('winston');
 const chalk = require('chalk');
 const editor = require('editor');
 const temp = require('temp').track();
 const fs = require('fs');
 const path = require('path');
-const buildCommit = require('./lib/build-commit');
-const changelogrcConfig = require('./lib/changelogrc-config');
+
+let log = require('winston');
+let buildCommit = require('./lib/build-commit');
+let changelogrcConfig = require('./lib/changelogrc-config');
 
 module.exports = {
   prompter: (cz, commit) => {
