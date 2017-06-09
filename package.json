@@ -5,7 +5,7 @@
   "bin": "index.js",
   "scripts": {
     "release": "release-me",
-    "report-coverage": "nyc report --reporter=text-lcov | codecov",
+    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "test": "nyc --reporter=html --reporter=text mocha --timeout 20000 --reporter spec $(find . -name '*test.js' ! -ipath '*node_modules*')",
     "test:check-coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
     "test:debug": "DEBUG=mocha npm t",
