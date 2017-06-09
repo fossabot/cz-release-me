@@ -17,12 +17,9 @@ notifications:
 before_install:
   - npm i -g npm@^2.0.0
 before_script:
-  - git config --global user.name 'Travis-CI'
-  - git config --global user.email 'travis-ci@design4.pro'
   - npm prune
 script:
-  - npm run build
-  - npm run cover
-  - npm run check-coverage
+  - npm run test
+  - npm run test:check-coverage
 after_success:
   - npm run report-coverage
