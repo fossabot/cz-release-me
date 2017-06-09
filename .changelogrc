@@ -67,7 +67,7 @@
       "name": "ci"
     },
     {
-      "name": "travis-ci"
+      "name": "travis"
     }
   ],
   "notes": [
