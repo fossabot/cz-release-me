@@ -1,19 +1,19 @@
 'use strict';
 
-const chalk = require('chalk');
-const editor = require('editor');
-const temp = require('temp').track();
-const fs = require('fs');
-const path = require('path');
-const shell = require('shelljs');
+var chalk = require('chalk');
+var editor = require('editor');
+var temp = require('temp').track();
+var fs = require('fs');
+var path = require('path');
+var shell = require('shelljs');
 
-let log = require('winston');
-let buildCommit = require('./lib/build-commit');
-let changelogrcConfig = require('./lib/changelogrc-config');
+var log = require('winston');
+var buildCommit = require('./lib/build-commit');
+var changelogrcConfig = require('./lib/changelogrc-config');
 
 module.exports = {
-  prompter: (cz, commit) => {
-    let pkg = {};
+  prompter: function (cz, commit) {
+    var pkg = {};
     try {
       pkg = require(path.resolve(
         process.cwd(),
@@ -22,22 +22,23 @@ module.exports = {
     } catch (err) {
       log.warn('no root package.json found');
     }
-    let changelogConfig = changelogrcConfig();
+    
+    var changelogConfig = changelogrcConfig();
 
-    Promise.resolve(changelogConfig).then(config => {
+    Promise.resolve(changelogConfig).then(function (config) {
       log.info('\n\nLine 1 will be cropped at 100 characters. All other lines will be wrapped after 100 characters.\n');
 
-      let questions = require('./lib/questions').getQuestions(config, cz);
+      var questions = require('./lib/questions').getQuestions(config, cz);
 
-      cz.prompt(questions).then((answers) => {
+      cz.prompt(questions).then(function (answers) {
         if (answers.confirmCommit === 'edit') {
-          temp.open(null, (err, info) => {
+          temp.open(null, function (err, info) {
             if (!err) {
               fs.write(info.fd, buildCommit(answers, config));
-              fs.close(info.fd, (err) => {
-                editor(info.path, (code, sig) => {
+              fs.close(info.fd, function (err) {
+                editor(info.path, function (code, sig) {
                   if (code === 0) {
-                    let commitStr = fs.readFileSync(info.path, {
+                    var commitStr = fs.readFileSync(info.path, {
                       encoding: 'utf8'
                     });
 
