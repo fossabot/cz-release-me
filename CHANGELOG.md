@@ -1,5 +1,21 @@
 # Change Log
 
+<a name="1.3.0"></a>
+# 1.3.0 (2017-06-13)
+
+* feat(package): node 4 and 5 compatibility ([4264399](https://github.com/design4pro/cz-release-me/commit/4264399))
+* test(package): code coverage ([f7a3621](https://github.com/design4pro/cz-release-me/commit/f7a3621))
+* test(travis): add greenkeeper branches ([a89359c](https://github.com/design4pro/cz-release-me/commit/a89359c))
+* test(travis): codecov, update dependencies ([a436365](https://github.com/design4pro/cz-release-me/commit/a436365))
+* test(travis): coveralls code ([e4e718a](https://github.com/design4pro/cz-release-me/commit/e4e718a))
+* fix(travis): fix travis-ci test ([fa06d57](https://github.com/design4pro/cz-release-me/commit/fa06d57))
+* Merge branch 'master' into greenkeeper/initial ([66cadec](https://github.com/design4pro/cz-release-me/commit/66cadec))
+* Merge pull request #2 from design4pro/greenkeeper/initial ([5a57386](https://github.com/design4pro/cz-release-me/commit/5a57386))
+* docs(readme): add Greenkeeper badge ([1af89c7](https://github.com/design4pro/cz-release-me/commit/1af89c7))
+* chore(package): update dependencies ([3249084](https://github.com/design4pro/cz-release-me/commit/3249084))
+* chore(travis): whitelist greenkeeper branches ([e076d8f](https://github.com/design4pro/cz-release-me/commit/e076d8f))
+
+
 
 <a name="1.2.0"></a>
 # [1.2.0](https://github.com/design4pro/cz-release-me/tree/v1.2.0) (2017-06-09)
