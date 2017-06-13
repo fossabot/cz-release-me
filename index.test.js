@@ -3,6 +3,7 @@
 'use strict';
 
 const debug = require('debug');
+const log = debug('mocha');
 const chai = require('chai');
 const spies = require('chai-spies');
 const sinon = require('sinon');
@@ -12,8 +13,6 @@ let expect = chai.expect;
 chai.should();
 chai.use(spies);
 chai.use(sinonChai);
-
-const log = debug('mocha');
 
 function getMockedCz(answers) {
   return {
@@ -33,7 +32,7 @@ describe('index', () => {
     let rewire = require('rewire');
 
     beforeEach(() => {
-      module = rewire('./lib/changelogrc-config.js');
+      module = rewire('./lib/changelogrc-config');
     });
 
     it('should read config from .changelogrc', (done) => {
@@ -43,24 +42,28 @@ describe('index', () => {
 
       let promise = module();
 
-      promise.then(function (result) {
+      promise.then(result => {
+        expect(result).to.be.an('object');
         expect(result).to.have.property('types');
         expect(result).to.have.property('notes');
         done();
       });
     });
 
-    it('should trow error when no file .changelogrc', (done) => {
+    it('should loade empty object when no file .changelogrc', (done) => {
       module.__set__({
+        // it mocks winston logging tool
+        log: {
+          warn: () => { }
+        },
         CHANGELOGRC: '.changelogrc-not-found'
       });
 
       let promise = module();
 
-      promise.then(function (result) {
-        throw new Error('Promise was unexpectedly fulfilled. Result: ' + result);
-      }, function rejected(error) {
-        expect(error).to.match(/not found/);
+      promise.then(result => {
+        expect(result).to.be.an('object');
+        expect(result).to.deep.equal({});
         done();
       });
     });
@@ -71,7 +74,7 @@ describe('index', () => {
     let rewire = require('rewire');
 
     beforeEach(() => {
-      module = rewire('./index.js');
+      module = rewire('./index');
 
       module.__set__({
         // it mocks winston logging tool

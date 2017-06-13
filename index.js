@@ -13,21 +13,27 @@ let changelogrcConfig = require('./lib/changelogrc-config');
 
 module.exports = {
   prompter: (cz, commit) => {
-    let config = changelogrcConfig();
-    let pkgPath = path.resolve(process.cwd(), './package.json')
-    let pkg = require(pkgPath);
+    let pkg = {};
+    try {
+      pkg = require(path.resolve(
+        process.cwd(),
+        './package.json'
+      ));
+    } catch (err) {
+      log.warn('no root package.json found');
+    }
+    let changelogConfig = changelogrcConfig();
 
-    Promise.resolve(config).then((value) => {
+    Promise.resolve(changelogConfig).then(config => {
       log.info('\n\nLine 1 will be cropped at 100 characters. All other lines will be wrapped after 100 characters.\n');
 
-      let questions = require('./lib/questions').getQuestions(value, cz);
+      let questions = require('./lib/questions').getQuestions(config, cz);
 
       cz.prompt(questions).then((answers) => {
         if (answers.confirmCommit === 'edit') {
           temp.open(null, (err, info) => {
-            /* istanbul ignore else */
             if (!err) {
-              fs.write(info.fd, buildCommit(answers));
+              fs.write(info.fd, buildCommit(answers, config));
               fs.close(info.fd, (err) => {
                 editor(info.path, (code, sig) => {
                   if (code === 0) {
@@ -38,7 +44,7 @@ module.exports = {
                     commit(commitStr);
                   }
                   else {
-                    log.info('Editor returned non zero value. Commit message was:\n' + buildCommit(answers));
+                    log.info('Editor returned non zero value. Commit message was:\n' + buildCommit(answers, config));
                   }
                 });
               });
@@ -46,26 +52,24 @@ module.exports = {
           });
         }
         else if (answers.confirmCommit === 'yes') {
-          commit(buildCommit(answers));
+          commit(buildCommit(answers, config));
         }
         else {
           log.info('Commit has been canceled.');
         }
 
-        /* istanbul ignore if */
         if (answers.releaseMe === 'yes') {
-          if (pkg.scripts.release) {
+          if (pkg && pkg.scripts && pkg.scripts.release) {
             shell.exec('npm run release');
           } else {
             log.info('Release script is not defined.');
           }
         }
 
-        /* istanbul ignore if */
         if (answers.pushChanges=== 'yes') {
           shell.exec('git push --follow-tags');
 
-          if (answers.releaseMe === 'yes' && pkg.scripts.release) {
+          if (answers.releaseMe === 'yes' && pkg && pkg.scripts && pkg.scripts.release) {
             shell.exec('npm publish');
           } else {
             log.info('No new release, nothing to push to the npm.');
