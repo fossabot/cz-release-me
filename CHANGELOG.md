@@ -1,5 +1,12 @@
 # Change Log
 
+<a name="1.3.1"></a>
+## 1.3.1 (2017-07-05)
+
+* test(ci): test fix ([42040e7](https://github.com/design4pro/cz-release-me/commit/42040e7))
+
+
+
 <a name="1.3.0"></a>
 # 1.3.0 (2017-06-13)
 
