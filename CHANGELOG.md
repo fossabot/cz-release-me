@@ -1,5 +1,12 @@
 # Change Log
 
+<a name="1.3.2"></a>
+## 1.3.2 (2017-07-05)
+
+* chore(package): package update ([0fc689d](https://github.com/design4pro/cz-release-me/commit/0fc689d))
+
+
+
 <a name="1.3.1"></a>
 ## 1.3.1 (2017-07-05)
 
