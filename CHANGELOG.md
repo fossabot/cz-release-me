@@ -1,5 +1,15 @@
 # Change Log
 
+<a name="1.3.2"></a>
+## 1.3.2 (2017-07-05)
+
+* chore(package): update ([14fb4f9](https://github.com/design4pro/cz-release-me/commit/14fb4f9))
+* merge ([aa179fd](https://github.com/design4pro/cz-release-me/commit/aa179fd))
+* Merge pull request #3 from design4pro/greenkeeper/chalk-2.0.0 ([4f09ee9](https://github.com/design4pro/cz-release-me/commit/4f09ee9))
+* fix(package): update chalk to version 2.0.0 ([30235ac](https://github.com/design4pro/cz-release-me/commit/30235ac))
+
+
+
 <a name="1.3.1"></a>
 ## 1.3.1 (2017-07-05)
 
