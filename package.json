@@ -51,7 +51,7 @@
     "word-wrap": "^1.2.3"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
+    "chai": "^4.1.0",
     "chai-spies": "^0.7.1",
     "codecov": "^2.2.0",
     "commitizen": "^2.9.6",
