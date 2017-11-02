@@ -67,7 +67,7 @@
     "rewire": "^2.5.2",
     "rimraf": "^2.6.1",
     "shelljs": "^0.7.3",
-    "sinon": "^4.0.1",
+    "sinon": "^4.1.0",
     "sinon-chai": "^2.10.0",
     "standard": "^10.0.0"
   },
