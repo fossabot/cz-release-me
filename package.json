@@ -45,7 +45,7 @@
     "chalk": "^2.0.0",
     "editor": "^1.0.0",
     "findup": "^0.1.5",
-    "inquirer": "^4.0.0",
+    "inquirer": "^5.0.0",
     "temp": "^0.8.3",
     "winston": "^2.3.1",
     "word-wrap": "^1.2.3"
